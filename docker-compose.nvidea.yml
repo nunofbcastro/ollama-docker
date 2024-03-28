@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  ollama-server:
+    image: ollama/ollama:latest
+    container_name: ollama-server
+    ports:
+      - '11434:11434'
+    volumes:
+      - ./ollama:/root/.ollama
+    environment:
+      - gpus=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    networks:
+      - default
+    restart: unless-stopped
+
+  ollama-webui:
+    image: ghcr.io/ollama-webui/ollama-webui:main
+    container_name: ollama-webui
+    restart: unless-stopped
+    volumes:
+      - ./ollama/webui:/app/backend/data
+    environment:
+      - OLLAMA_API_BASE_URL=http://ollama-server:11434/api
+    ports:
+      - '3010:8080'
+    networks:
+      - default
+
+networks:
+  default:
