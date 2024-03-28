@@ -29,3 +29,20 @@ docker exec -it ollama-server ollama run llama2
 or
 
 <img src="/.github/assets/add_model.png?raw=true"/>
+
+<h2>Front-end</h2>
+
+```
+http://localhost:3010
+```
+
+---
+
+<h2>Authors</h2>
+
+<h3>
+  Nuno Castro
+  <a href="https://github.com/nunofbcastro?tab=followers">
+    <img src="https://img.shields.io/github/followers/nunofbcastro.svg?style=for-the-badge&label=Follow" height="20"/>
+  </a>
+</h3>
